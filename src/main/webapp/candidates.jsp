@@ -1,4 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: 1
@@ -10,7 +9,7 @@
 <%@ page import="ru.job4j.dream.store.Store" %>
 <%@ page import="ru.job4j.dream.model.Candidate" %>
 <%@ page import="java.util.Collection" %>
-<%@ taglib prefix="d" uri="http://java.sun.com/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 
 <!doctype html>
 <html lang="en">
@@ -48,16 +47,16 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <d:forEach items="${candidates}" var="can">
+                    <c:forEach items="${candidates}" var="can">
                     <tr>
                         <td>
-                            <a href='<d:url value="/candidate/edit.jsp?id=${can.id}"/>'>
+                            <a href='<c:url value="/candidate/edit.jsp?id=${can.id}"/>'>
                             <i class="fa fa-edit mr-3"></i>
                             </a>
-                            <d:out value="${can.name}"/>
+                            <c:out value="${can.name}"/>
                         </td>
                     </tr>
-                    </d:forEach>
+                    </c:forEach>
                     </tbody>
                 </table>
             </div>
