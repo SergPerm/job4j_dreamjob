@@ -1,10 +1,13 @@
 package ru.job4j.dreamjob.model;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class Candidate {
     private int id;
     private String name;
+    private String desc;
+    private Date created;
 
     public Candidate(int id, String name) {
         this.id = id;
@@ -27,6 +30,22 @@ public class Candidate {
         this.name = name;
     }
 
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -36,11 +55,14 @@ public class Candidate {
             return false;
         }
         Candidate candidate = (Candidate) o;
-        return id == candidate.id && name.equals(candidate.name);
+        return id == candidate.id
+                && name.equals(candidate.name)
+                && Objects.equals(desc, candidate.desc)
+                && Objects.equals(created, candidate.created);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(id, name, desc, created);
     }
 }
