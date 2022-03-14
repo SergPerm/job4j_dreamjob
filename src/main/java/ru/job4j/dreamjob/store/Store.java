@@ -38,7 +38,16 @@ public class Store {
         return candidates.values();
     }
 
-    public void savePost(Post post) {
+    public void createPost(Post post) {
+        this.savePost(post);
+    }
+
+
+    public void updatePost(Post post) {
+        this.savePost(post);
+    }
+
+    private void savePost(Post post) {
         if (post.getId() == 0) {
             post.setId(POST_ID.getAndIncrement());
         }
