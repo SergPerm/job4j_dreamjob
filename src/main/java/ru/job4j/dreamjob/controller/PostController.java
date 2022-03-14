@@ -21,7 +21,6 @@ public class PostController {
 
     @GetMapping("/addPost")
     public String addPost(Model model) {
-//        model.addAttribute("addPost", new Post(0, "Задайте имя"));
         return "addPost";
     }
 
