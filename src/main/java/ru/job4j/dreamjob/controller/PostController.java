@@ -3,6 +3,8 @@ package ru.job4j.dreamjob.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import ru.job4j.dreamjob.model.Post;
 import ru.job4j.dreamjob.store.Store;
 
@@ -19,8 +21,14 @@ public class PostController {
 
     @GetMapping("/addPost")
     public String addPost(Model model) {
-        model.addAttribute("addPost", new Post(0, "Задайте имя"));
+//        model.addAttribute("addPost", new Post(0, "Задайте имя"));
         return "addPost";
+    }
+
+    @PostMapping("/savePost")
+    public String savePost(@ModelAttribute Post post) {
+        store.savePost(post);
+        return "redirect:/posts";
     }
 
 }
