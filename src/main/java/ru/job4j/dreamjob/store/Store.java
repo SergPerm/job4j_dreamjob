@@ -42,7 +42,6 @@ public class Store {
         this.savePost(post);
     }
 
-
     public void updatePost(Post post) {
         this.savePost(post);
     }
@@ -54,7 +53,15 @@ public class Store {
         posts.put(post.getId(), post);
     }
 
-    public void saveCandidate(Candidate candidate) {
+    public void createCandidate(Candidate candidate) {
+        this.saveCandidate(candidate);
+    }
+
+    public void updateCandidate(Candidate candidate) {
+        this.saveCandidate(candidate);
+    }
+
+    private void saveCandidate(Candidate candidate) {
         if (candidate.getId() == 0) {
             candidate.setId(CANDIDATE_ID.getAndIncrement());
         }
