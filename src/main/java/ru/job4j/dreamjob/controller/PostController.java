@@ -7,16 +7,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.job4j.dreamjob.model.Post;
-import ru.job4j.dreamjob.store.Store;
+import ru.job4j.dreamjob.services.PostService;
 
 @Controller
 public class PostController {
 
-    private final Store store = Store.instOf();
+    private final PostService postService = PostService.instOf();
 
     @GetMapping("/posts")
     public String posts(Model model) {
-        model.addAttribute("posts", store.findAllPosts());
+        model.addAttribute("posts", postService.findAllPosts());
         return "posts";
     }
 
@@ -28,19 +28,19 @@ public class PostController {
 
     @PostMapping("/createPost")
     public String createPost(@ModelAttribute Post post) {
-        store.createPost(post);
+        postService.createPost(post);
         return "redirect:/posts";
     }
 
     @PostMapping("/updatePost")
     public String updatePost(@ModelAttribute Post post) {
-        store.updatePost(post);
+        postService.updatePost(post);
         return "redirect:/posts";
     }
 
     @GetMapping("/updatePost/{postId}")
     public String updatePost(Model model, @PathVariable("postId") int id) {
-        model.addAttribute("post", store.findPostById(id));
+        model.addAttribute("post", postService.findPostById(id));
         return "updatePost";
     }
 
