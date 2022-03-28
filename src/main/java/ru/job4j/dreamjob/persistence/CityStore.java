@@ -16,10 +16,10 @@ public class CityStore {
     private final Map<Integer, City> cityStore = new ConcurrentHashMap<>();
 
     public CityStore() {
-        cityStore.put(1, new City(1, "Moscow"));
+        cityStore.put(1, new City(1, "Msk"));
         cityStore.put(2, new City(2, "SPb"));
         cityStore.put(3, new City(3, "Ekb"));
-        cityStore.put(4, new City(4, "Perm"));
+        cityStore.put(4, new City(4, "Prm"));
     }
 
     public Collection<City> findAllCity() {

@@ -10,9 +10,10 @@ public class Post implements Serializable {
     private Date created;
     private String description;
     private City city;
+    private boolean visible;
 
-    private Post() {
-        }
+    public Post() {
+    }
 
     public Post(int id, String name) {
         this.id = id;
@@ -23,6 +24,14 @@ public class Post implements Serializable {
         this.id = id;
         this.name = name;
         this.city = city;
+    }
+
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
 
     public String getName() {
@@ -67,8 +76,12 @@ public class Post implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Post post = (Post) o;
         return id == post.id
                 && name.equals(post.name)

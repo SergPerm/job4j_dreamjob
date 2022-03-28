@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -30,7 +30,7 @@
                 <a class="nav-item nav-link" th:href="@{/posts}">Вакансии</a>
                 <a class="nav-item nav-link active" th:href="@{/addPost}">Добавить вакансию</a>
                 <a class="nav-item nav-link" th:href="@{/cadidates}">Кандидаты</a>
-                <a class="nav-item nav-link" th:href="@{/addCandidate}">Добавить Кандидата</a>
+                <a class="nav-item nav-link" th:href="@{/addCandidate}">Добавить кандидата</a>
             </div>
         </div>
     </nav>
@@ -40,8 +40,8 @@
                 Редатирование вакансии вакансия.
             </div>
             <div class="card-body">
-                <form th:action="@{/updatePost}" method="POST" th:object="${post}">
-                    <input type="hidden" name="id" th:field="*{id}"/>
+                <form method="POST" th:action="@{/updatePost}" th:object="${post}">
+                    <input type="hidden" name="post.id" th:field="${post.id}"/>
                     <div class="form-group">
                         <label for="name">Имя</label>
                         <input type="text" class="form-control" name="name" id="name" th:field="*{name}">
