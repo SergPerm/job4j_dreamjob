@@ -11,7 +11,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @ThreadSafe
 @Repository
-public class PostStore {
+public class PostStore implements Store<Post> {
 
     private static final AtomicInteger POST_ID = new AtomicInteger(4);
     private final Map<Integer, Post> posts = new ConcurrentHashMap<>();
@@ -22,19 +22,24 @@ public class PostStore {
         posts.put(3, new Post(3, "Senior Java Job"));
     }
 
-    public Collection<Post> findAllPosts() {
+    @Override
+    public Collection<Post> findAll() {
         return posts.values();
     }
 
-    public void createPost(Post post) {
+    @Override
+    public Post add(Post post) {
+        this.savePost(post);
+        return post;
+    }
+
+    @Override
+    public void update(Post post) {
         this.savePost(post);
     }
 
-    public void updatePost(Post post) {
-        this.savePost(post);
-    }
-
-    public Post findPostById(int id) {
+    @Override
+    public Post findById(int id) {
         return posts.get(id);
     }
 
