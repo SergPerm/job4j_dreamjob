@@ -16,7 +16,6 @@ import java.util.List;
 @Repository
 public class CandidateDbStore implements Store<Candidate> {
 
-
     private final BasicDataSource pool;
 
     public CandidateDbStore(BasicDataSource pool) {
