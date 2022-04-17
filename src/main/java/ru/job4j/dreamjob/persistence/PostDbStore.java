@@ -87,4 +87,9 @@ public class PostDbStore implements Store<Post> {
         }
         return null;
     }
+
+    @Override
+    public Post findByEmailAndPsw(String email, String password) {
+        return null;
+    }
 }
