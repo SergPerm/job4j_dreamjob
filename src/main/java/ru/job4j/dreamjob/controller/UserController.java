@@ -33,7 +33,6 @@ public class UserController {
                                @ModelAttribute User user) {
         Optional<User> regUser = userService.createUser(user);
         if (regUser.isEmpty()) {
-            model.addAttribute("msg", "Пользователь с такой почтой уже существует");
             return "redirect:/fail";
         }
         return "redirect:/success";
@@ -46,6 +45,7 @@ public class UserController {
 
     @GetMapping("/fail")
     public String registrationFail(Model model) {
+        model.addAttribute("msg", "Пользователь с такой почтой уже существует");
         return "registrationFail";
     }
 }
