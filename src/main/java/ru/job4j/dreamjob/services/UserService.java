@@ -13,7 +13,7 @@ import java.util.Optional;
 @Service
 public class UserService {
 
-    private final Store<User> store;
+    private final UserDbStore store;
 
     public UserService(UserDbStore userDbStore) {
         this.store = userDbStore;
@@ -37,6 +37,6 @@ public class UserService {
     }
 
     public Optional<User> findUserByEmailAndPwd(String email, String password) {
-        return Optional.ofNullable(store.findByEmailAndPsw(email, password));
+        return store.findByEmailAndPsw(email, password);
     }
 }

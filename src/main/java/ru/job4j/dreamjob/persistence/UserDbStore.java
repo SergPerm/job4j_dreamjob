@@ -11,10 +11,11 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @ThreadSafe
 @Repository
-public class UserDbStore implements Store<User> {
+public class UserDbStore implements StoreWithFindByEmailAndPsw<User> {
 
     private final BasicDataSource pool;
 
@@ -23,7 +24,7 @@ public class UserDbStore implements Store<User> {
     }
 
     @Override
-    public Collection<User> findAll() {
+    public Collection findAll() {
         List<User> users = new ArrayList<>();
         try (Connection cn = pool.getConnection();
              PreparedStatement ps =  cn.prepareStatement("SELECT * FROM users")
@@ -102,7 +103,7 @@ public class UserDbStore implements Store<User> {
     }
 
     @Override
-    public User findByEmailAndPsw(String email, String password) {
+    public Optional<User> findByEmailAndPsw(String email, String password) {
         try (Connection cn = pool.getConnection();
              PreparedStatement ps =  cn.prepareStatement("SELECT * FROM users WHERE email = ? AND password = ?")
         ) {
@@ -110,15 +111,15 @@ public class UserDbStore implements Store<User> {
             ps.setString(2, password);
             try (ResultSet it = ps.executeQuery()) {
                 if (it.next()) {
-                    return new User(it.getInt("id"),
+                    return Optional.of(new User(it.getInt("id"),
                             it.getString("name"),
                             it.getString("email"),
-                            it.getString("password"));
+                            it.getString("password")));
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return Optional.empty();
     }
 }

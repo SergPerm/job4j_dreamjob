@@ -49,9 +49,4 @@ public class PostStore implements Store<Post> {
         }
         posts.put(post.getId(), post);
     }
-
-    @Override
-    public Post findByEmailAndPsw(String email, String password) {
-        return null;
-    }
 }

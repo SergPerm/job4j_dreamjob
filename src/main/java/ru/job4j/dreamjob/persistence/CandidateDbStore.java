@@ -87,9 +87,4 @@ public class CandidateDbStore implements Store<Candidate> {
         }
         return null;
     }
-
-    @Override
-    public Candidate findByEmailAndPsw(String email, String password) {
-        return null;
-    }
 }

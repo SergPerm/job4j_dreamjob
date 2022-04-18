@@ -7,6 +7,4 @@ public interface Store<T> {
     T add(T t);
     void update(T t);
     T findById(int id);
-
-    T findByEmailAndPsw(String email, String password);
 }
