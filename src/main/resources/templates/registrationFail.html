@@ -28,9 +28,7 @@
             <div class="navbar-nav">
                 <a class="nav-item nav-link" href="#">Главная</a>
                 <a class="nav-item nav-link" th:href="@{/posts}">Вакансии</a>
-                <a class="nav-item nav-link" th:href="@{/addPost}">Добавить вакансию</a>
                 <a class="nav-item nav-link" th:href="@{/cadidates}">Кандидаты</a>
-                <a class="nav-item nav-link" th:href="@{/addCandidate}">Добавить кандидата</a>
                 <a class="nav-item nav-link active" th:href="@{/registration}">Регистрация</a>
             </div>
         </div>
@@ -40,9 +38,6 @@
             <div class="card-header">
                 Регистрация провалилась.
             </div>
-<!--            <td th:field="#{msg}"></td>-->
-<!--            -->
-<!--            <td th:value="${msg}">a</td>-->
             <p>
                 <span th:text="${msg}">a</span>
             </p>
