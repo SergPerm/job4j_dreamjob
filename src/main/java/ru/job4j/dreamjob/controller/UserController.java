@@ -24,32 +24,24 @@ public class UserController {
         this.userService = userService;
     }
 
-
     @GetMapping("/registration")
-    public String registration(Model model) {
+    public String registration(Model model, @RequestParam(name = "failUser", required = false) Boolean failUser) {
         model.addAttribute("user", new User());
+        model.addAttribute("failUser", failUser != null);
         return "registration";
     }
 
     @PostMapping("/registration")
     public String registration(Model model,
-                               @ModelAttribute User user) {
+                               @ModelAttribute User user,
+                               HttpServletRequest req) {
         Optional<User> regUser = userService.createUser(user);
         if (regUser.isEmpty()) {
-            return "redirect:/fail";
+            return "redirect:/registration?failUser=true";
         }
-        return "redirect:/success";
-    }
-
-    @GetMapping("/success")
-    public String registrationSuccess(Model model) {
-        return "registrationSuccess";
-    }
-
-    @GetMapping("/fail")
-    public String registrationFail(Model model) {
-        model.addAttribute("msg", "Пользователь с такой почтой уже существует");
-        return "registrationFail";
+        HttpSession session = req.getSession();
+        session.setAttribute("user", regUser.get());
+        return "redirect:/index";
     }
 
     @GetMapping("/loginPage")

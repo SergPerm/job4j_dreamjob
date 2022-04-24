@@ -26,10 +26,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link" href="#">Главная</a>
-                <a class="nav-item nav-link" th:href="@{/posts}">Вакансии</a>
-                <a class="nav-item nav-link" th:href="@{/cadidates}">Кандидаты</a>
                 <a class="nav-item nav-link active" th:href="@{/registration}">Регистрация</a>
+                <a class="nav-item nav-link" th:href="@{/loginPage}">Войти с существующей записью</a>
             </div>
         </div>
     </nav>
@@ -39,6 +37,9 @@
                 Регистрация пользователя.
             </div>
             <div class="card-body">
+                <div th:if="${failUser}" class="alert alert-danger" role="alert">
+                    Пользователь с такой почтой уже существует
+                </div>
                 <form th:action="@{/registration}" th:method="POST" th:object="${user}" enctype="multipart/form-data">
                     <div class="form-group">
                         <input type="hidden" name="id" value="0">
